@@ -135,7 +135,7 @@ const onPasswordKeyDownHandler = (event: KeyboardEvent<HTMLInputElement>) => {
 
           <div className='black-large-full-button' onClick={onSignInButtonClickHandler}>{'로그인'}</div>
           <div className='auth-description-box'>
-            <div className='auth-description'>{'신규 사용자이신가요?'}<span className='auth-description-link' onClick={onSignUpLinkClickHandler}>{'회원가입'}</span></div>
+            <div className='auth-description'>{'rêve가 처음이신가요?'}<span className='auth-description-link' onClick={onSignUpLinkClickHandler}>{'회원가입'}</span></div>
           </div>
         </div>
       </div>
@@ -341,10 +341,11 @@ const onNextButtonClickHandler = () => {
     setEmailError(true);
     setEmailErrorMessage('이메일 주소 포멧이 맞지 않습니다.')
   }
-  const isCheckedPassword = password.trim().length > 8
-  if(!isCheckedPassword){
-    setPasswordError(true);
-    setPasswordErrorMessage('비밀번호는 8자 이상 입력해주세요.')
+  const passwordPattern = /^(?=.*[A-Z])(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+  const isCheckedPassword = passwordPattern.test(password);
+  if (!isCheckedPassword) {
+  setPasswordError(true);
+  setPasswordErrorMessage('비밀번호를 8자 이상, 대문자와 특수 기호를 포함하여 입력해주세요.');
   }
   const isEqualPassword = password === passwordCheck;
   if(!isEqualPassword){
@@ -364,10 +365,11 @@ const onSignUpButtonClickHandler = () => {
     setEmailError(true);
     setEmailErrorMessage('이메일 주소 포멧이 맞지 않습니다.')
   }
-  const isCheckedPassword = password.trim().length > 8
-  if(!isCheckedPassword){
-    setPasswordError(true);
-    setPasswordErrorMessage('비밀번호는 8자 이상 입력해주세요.')
+  const passwordPattern = /^(?=.*[A-Z])(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+  const isCheckedPassword = passwordPattern.test(password);
+  if (!isCheckedPassword) {
+  setPasswordError(true);
+  setPasswordErrorMessage('비밀번호를 8자 이상, 대문자와 특수 기호를 포함하여 입력해주세요.');
   }
   const isEqualPassword = password === passwordCheck;
   if(!isEqualPassword){
@@ -531,8 +533,8 @@ useEffect(() => {
           <div className='auth-jumbotron-contents'>
             <div className='auth-logo-icon'></div>
             <div className='auth-jumbotron-text-box'>
-              <div className='auth-jumbotron-text'>{'환영합니다'}</div>
-              <div className='auth-jumbotron-text'>{'Hoons Board 입니다.'}</div>
+              <div className='auth-jumbotron-text'>{'rêve:꿈'}</div>
+              <div className='auth-jumbotron-text'>{'당신의 꿈을 기록해보세요.'}</div>
             </div>
           </div>
         </div>

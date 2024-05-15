@@ -25,7 +25,7 @@ export default function Footer() {
                     <div className='icon-box'>
                         <div className='icon logo-light-icon'></div>
                     </div>
-                    <div className='footer-logo-text'>{'Hoons Board'}</div>
+                    <div className='footer-logo-text'>{'rêve:꿈'}</div>
                 </div>
                 <div className='footer-link-box'>
                     <div className='footer-email-link'>{'cjsxogns@naver.com'}</div>

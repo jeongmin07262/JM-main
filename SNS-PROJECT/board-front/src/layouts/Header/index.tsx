@@ -183,7 +183,7 @@ useEffect( ()=> {
           <div className='icon-box'> 
             <div className='icon logo-dark-icon'></div>
           </div>
-          <div className='header-logo'>{'Hoons board'}</div>
+          <div className='header-logo'>{'rêve:꿈'}</div>
         </div>
         <div className= 'header-right-box'>
           {(isAuthPage || isMainPage || isSearchPage || isBoardDetailPage) && <SearchButton />}
