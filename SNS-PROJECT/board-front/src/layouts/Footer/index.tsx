@@ -28,7 +28,7 @@ export default function Footer() {
                     <div className='footer-logo-text'>{'rêve:꿈'}</div>
                 </div>
                 <div className='footer-link-box'>
-                    <div className='footer-email-link'>{'cjsxogns@naver.com'}</div>
+                    <div className='footer-email-link'>{'dlwjdals0726@naver.com'}</div>
                     <div className='icon-button' onClick={onInstaIconButtonClickHandler}>
                         <div className='icon insta-icon'></div>
                     </div>
@@ -38,7 +38,7 @@ export default function Footer() {
                 </div>
             </div>
             <div className='footer-bottom'>
-                <div className='footer-copyright'>{'Copyright 2022 asdf'}</div>
+                <div className='footer-copyright'>{'Copyright 2024 경성대학교'}</div>
             </div>
         </div>
     </div>
