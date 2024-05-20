@@ -193,3 +193,7 @@
     top: 20px;
     right: 20px;
 }
+
+.more-icon {
+    background-image: url(assets/image/more.png);
+}
