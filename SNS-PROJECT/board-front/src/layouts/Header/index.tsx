@@ -115,7 +115,7 @@ const MyPageButton = () => {
     const {email} = loginUser;
     navigate(USER_PATH(email));
   };
-  //            event handler : 마이페이지 버튼 클릭 이벤트 처리 함수     //
+  //            event handler : 로그아웃 버튼 클릭 이벤트 처리 함수     //
   const onSignOutButtonClickHandler = () => {
     resetLoginUser();
     setCoookie('accessToken', '', {path:MAIN_PATH(), expires: new Date() })
@@ -160,7 +160,7 @@ const UploadButton = () => {
 
   //          event handler : 업로드 버튼 클릭 이벤트 처리    //
   const onUploadButtonClickHandler = async () => {
-    const accessToken = cookies.accesToken;
+    const accessToken = cookies.accessToken;
     if (!accessToken) return;
 
     const boardImageList: string[] = [];
