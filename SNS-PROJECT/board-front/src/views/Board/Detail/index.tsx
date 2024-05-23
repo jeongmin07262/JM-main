@@ -9,6 +9,9 @@ import defaultProfileImage from 'assets/image/default-profile-image.png'
 import { useLoginUserStore } from 'stores';
 import { useNavigate, useParams } from 'react-router-dom';
 import { BOARD_PATH, BOARD_UPDATE_PATH, MAIN_PATH, USER_PATH } from 'constant';
+import { getBoardRequest } from 'apis';
+import GetBoardResponseDto from 'apis/response/board/get-board.response.dto';
+import { ResponseDto } from 'apis/response';
 
 //  component: 게시물 상세 화면 컴포넌트        //
 export default function BoardDetail() {
@@ -27,10 +30,24 @@ export default function BoardDetail() {
 
 
     //    state: more 버튼 상태    //
-    const [board, setboard] = useState<Board | null>(null);
+    const [board, setBoard] = useState<Board | null>(null);
 
     //    state: more 버튼 상태    //
     const [showMore, setShowMore] = useState<boolean>(false);
+
+    //    function: getBoardResponse 처리 함수    //
+    const getBoardResponse = (responseBody: GetBoardResponseDto | ResponseDto | null) => {
+      if (!responseBody) return;
+      const { code } = responseBody;
+      if (code === 'NB') alert('존재하지 않은 게시물입니다.');
+      if (code === 'DBE') alert('데이터베이스 오류입니다.');
+      if (code !== 'SU') {
+        navigator(MAIN_PATH());
+        return;
+      }
+      const board: Board = { ...responseBody as GetBoardResponseDto };
+      setBoard(board);
+    }
 
     //    event handler: 닉네임 클릭 이벤트 처리    //
     const onNicknameClickHandler = () => {
@@ -60,7 +77,11 @@ export default function BoardDetail() {
     
     //    effect: 게시물 번호 path variable이 바뀔때 마다 게시물 불러오기    //
     useEffect(() => {
-      setboard(boardMock);
+      if (!boardNumber) {
+        navigator(MAIN_PATH());
+        return;
+      }
+      getBoardRequest(boardNumber).then(getBoardResponse);
     }, [boardNumber]);
     
     //  render: 게시물 상세 상단 컴포넌트 렌더링 //
@@ -92,7 +113,6 @@ export default function BoardDetail() {
         <div className='board-detail-top-main'>
           <div className='board-detail-main-text'>{board.content}</div>
           {board.boardImageList.map(image => <img className='board-detail-main-image' src={image} />)}
-         
         </div>
       </div>
     );
