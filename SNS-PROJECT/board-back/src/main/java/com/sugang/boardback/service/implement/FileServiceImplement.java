@@ -45,7 +45,7 @@ public class FileServiceImplement implements FileService{
     public Resource getImage(String fileName) {
         Resource resource = null;
         try {
-            resource = new UrlResource("file" + filePath + fileName);
+            resource = new UrlResource("file:" + filePath + fileName);
             
         } catch (Exception exception) {
             exception.printStackTrace();
