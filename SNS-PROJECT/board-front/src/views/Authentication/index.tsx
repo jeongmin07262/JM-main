@@ -20,7 +20,7 @@ const [view, setView] = useState<'sign-in' | 'sign-up'> ('sign-in');
 const [cookies, setCookie] = useCookies();
 
 //      function : 네비게이트 함수      //
-const navigator = useNavigate();
+const navigate = useNavigate();
 
 //      component: sign in card 컴포넌트        //
 const SignInCard = () => {
@@ -58,7 +58,7 @@ const signInResponse = (responseBody: SignInResponseDto | ResponseDto | null) =>
   const expires = new Date (now + expirationTime * 1000);
 
   setCookie('accessToken', token, {expires, path:MAIN_PATH() });
-  navigator(MAIN_PATH());
+  navigate(MAIN_PATH());
 }
 
 //      event handler : 이메일 변경 이벤트 처리           //

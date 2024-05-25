@@ -3,6 +3,7 @@ import './style.css';
 import defaultProfileImage from 'assets/image/default-profile-image.png'
 import { BoardListItem } from 'types/interface';
 import { useNavigate } from 'react-router-dom';
+import { BOARD_DETAIL_PATH, BOARD_PATH } from 'constant';
 
 interface Props{
     top3ListItem : BoardListItem
@@ -17,11 +18,11 @@ const {favoriteCount, commentCount, viewCount} = top3ListItem
 const {writeDatetime, writerNickname, writerProfileImage} = top3ListItem
 
 //              function : 네비게이트 함수            //
-//const navigator = useNavigate();
+const navigate = useNavigate();
 
 //              event handler : 게시물 아이템 클릭 이벤트 처리 함수     //
 const onClickHandler = () => {
-//    navigator(boardNumber);
+    navigate(BOARD_PATH() + '/' + BOARD_DETAIL_PATH(boardNumber));
 }
 
 
