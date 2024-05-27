@@ -137,7 +137,6 @@ public class BoardServiceImplement implements BoardService {
         return GetTop3BoardListResponseDto.success(boardListViewEntities);
     }
 
-
     @Override
     public ResponseEntity<? super PostBoardResponseDto> postBoard(PostBoardRequestDto dto, String email) {
         try {

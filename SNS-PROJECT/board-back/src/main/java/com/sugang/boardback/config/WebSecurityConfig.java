@@ -35,7 +35,7 @@ public class WebSecurityConfig {
             .httpBasic().disable()  //HTTP 기본 인증 비활성화
             .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()   //세션 사용하지 않음
             .authorizeRequests()    //요청에 대한 인증 및 권한 부여를 설정
-            .antMatchers("/", "/api/v1/auth/**", "api/v1/search/**", "/file/**").permitAll()
+            .antMatchers("/", "/api/v1/auth/**", "/api/v1/search/**", "/file/**").permitAll()
             //경로에 대한 요청은 모든 사용자에게 허용
             .antMatchers(HttpMethod.GET, "/api/v1/board/**", "/api/vi/user/*").permitAll()
             //GET 메서드로 경로에 대한 요청은 모든 사용자에게 허용
