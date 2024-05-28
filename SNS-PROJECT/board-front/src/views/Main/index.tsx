@@ -109,7 +109,7 @@ export default function Main() {
       getPopularListRequest().then(getPopularListResponse);
     }, []);
 
-    //    render: 게시물 메인 화면 상단 컴포넌트 렌더링 //
+    //    render: 게시물 메인 화면 하단 컴포넌트 렌더링 //
     return (
       <div id='main-bottom-wrapper'>
         <div className='main-bottom-container'>

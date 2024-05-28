@@ -37,7 +37,7 @@ public class WebSecurityConfig {
             .authorizeRequests()    //요청에 대한 인증 및 권한 부여를 설정
             .antMatchers("/", "/api/v1/auth/**", "/api/v1/search/**", "/file/**").permitAll()
             //경로에 대한 요청은 모든 사용자에게 허용
-            .antMatchers(HttpMethod.GET, "/api/v1/board/**", "/api/vi/user/*").permitAll()
+            .antMatchers(HttpMethod.GET, "/api/v1/board/**", "/api/v1/user/*").permitAll()
             //GET 메서드로 경로에 대한 요청은 모든 사용자에게 허용
             .anyRequest().authenticated();  //그 외 요청은 인증된 사용자만
             
