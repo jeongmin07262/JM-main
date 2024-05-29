@@ -6,10 +6,11 @@ import { latestBoardListMock } from 'mocks';
 import BoardItem from 'components/BoardItem';
 import { SEARCH_PATH } from 'constant';
 import Pagination from 'components/Pagination';
-import { GetSearchBoardListRequest } from 'apis';
+import { GetRelationListRequest, GetSearchBoardListRequest } from 'apis';
 import { GetSearchBoardListResponseDto } from 'apis/response/board';
 import { ResponseDto } from 'apis/response';
 import { usePagination } from 'hooks';
+import { GetRelationListResponseDto } from 'apis/response/search';
 
 //      component: 검색 화면 컴포넌트    //
 export default function Search() {
@@ -36,7 +37,7 @@ export default function Search() {
   const [count, setCount] = useState<number>(0);
 
   //    state: 관련 검색어 리스트 상태    //
-  const [relationList, setRelationList] = useState<string[]>([]);
+  const [relativeWordList, setrelativeWordList] = useState<string[]>([]);
 
   //    function: 네비게이트 함수    //
   const navigate = useNavigate();
@@ -55,6 +56,17 @@ export default function Search() {
     setPreSearchWord(searchWord);
   }
 
+  //    function: get relation list response 처리 함수   //
+  const GetRelationListResponse = (responseBody: GetRelationListResponseDto | ResponseDto | null) => {
+    if (!responseBody) return;
+    const {code} = responseBody;
+    if (code === 'DBE') alert('데이터베이스 오류입니다.');
+    if (code !== 'SU') return;
+
+    const {relativeWordList} = responseBody as GetRelationListResponseDto;
+    setrelativeWordList(relativeWordList)
+  }
+
   //    event handler: 연관 검색어 클릭 이벤트 처리    //
   const onRelationWordClickHandler = (word: string) => {
       navigate(SEARCH_PATH(word));
@@ -64,9 +76,11 @@ export default function Search() {
   useEffect(() => {
     if (!searchWord) return;
     GetSearchBoardListRequest(searchWord,preSearchWord).then(GetSearchBoardListResponse);
+    GetRelationListRequest(searchWord).then(GetRelationListResponse);
   },[searchWord]);
 
 //      render: 게시물 검색 화면 컴포넌트 렌더링  //
+if (!searchWord) return(<></>);
   return (
     <div id='search-wrapper'>
       <div className='search-container'>
@@ -83,10 +97,10 @@ export default function Search() {
             <div className='search-relation-card'>
               <div className='search-relation-card-container'>
                <div className='search-relation-card-title'>{'관련 검색어'}</div>
-                {relationList.length === 0 ?
+                {relativeWordList.length === 0 ?
                 <div className='search-relation-card-contents-nothing'>{'관련 검색어가 없습니다.'}</div> :
                 <div className='search-relation-card-contents'>
-                {relationList.map(word => <div className='word-badge' onClick={() => onRelationWordClickHandler(word)}>{word}</div>)}
+                {relativeWordList.map(word => <div className='word-badge' onClick={() => onRelationWordClickHandler(word)}>{word}</div>)}
                 </div>
                 }
               </div>

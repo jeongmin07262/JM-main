@@ -8,7 +8,7 @@
     justify-content: center;
     align-items: center;
 
-    background-image: url(assets/auth-background.png);
+    background-image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSoj7iFdSCsGQfYTjBaEQbn8To2AOZ2uKVGsw&s';
     background-position: 50% 50%;
     background-repeat: no-repeat;
     background-size: auto;
@@ -66,14 +66,16 @@
     text-align: center;
 }
 
-.auth-card{
+.auth-card {
     grid-column: 2 / 3;
 
     border-radius: 10px;
-    padding: 50px 50px 30px;
+    padding: 25px 25px 15px;
 
     background-color: rgba(255, 255, 255, 1);
     box-shadow: 0px 4px 47px 0px rgba(0, 0, 0, 0.25);
+    height: 600px; /* 너비를 반으로 줄임 */
+    margin-top: 200px; /* 추가된 부분 */
 }
 
 .auth-card-box{
@@ -91,7 +93,7 @@
 
 .auth-card-title-box{
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
 
 }
 
@@ -114,6 +116,7 @@
 .auth-card-bottom{
     display: flex;
     flex-direction: column;
+    align-items: center;
     gap: 20px;
 }
 
@@ -148,6 +151,8 @@
     color: rgba(0, 0, 0, 1);
     cursor: pointer;
     font-weight: 600;
+    font-size: 16px;
+   margin-left: 1em;
 }
 
 .auth-consent-box{
@@ -185,4 +190,8 @@
     font-size: 14px;
     font-weight: 600;
     line-height: 140%;
+}
+.goto-main-link {
+    font-size: 24px;
+    cursor: pointer;
 }

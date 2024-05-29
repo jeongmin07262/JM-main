@@ -246,7 +246,7 @@ useEffect( ()=> {
           <div className='header-logo'>{'rêve:꿈'}</div>
         </div>
         <div className= 'header-right-box'>
-          {(isAuthPage || isMainPage || isSearchPage || isBoardDetailPage) && <SearchButton />}
+          {(isMainPage || isSearchPage || isBoardDetailPage) && <SearchButton />}
           {(isMainPage || isSearchPage || isBoardDetailPage || isUserPage) && <MyPageButton />}
           {(isBoardWritePage || isBoardUpdatePage) && <UploadButton />}
         </div>

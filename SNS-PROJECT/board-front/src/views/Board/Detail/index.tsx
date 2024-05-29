@@ -191,7 +191,7 @@ export default function BoardDetail() {
     const [totalCommentCount, setTotalCommentCount] = useState<number>(0);
 
     //    state: 댓글 상자 보기 상태    //
-    const [showComment, setShowComment] = useState<boolean>(false);
+    const [showComment, setShowComment] = useState<boolean>(true);
 
     //    state: 댓글 상태    //
     const [comment, setComment] = useState<string>('');
@@ -263,11 +263,13 @@ export default function BoardDetail() {
 
     //    event handler: 좋아요 클릭 이벤트 처리    //
     const onFavoriteClickHandler = () => {
-      if(!boardNumber || !loginUser || !cookies.accessToken) return;
-      putFavoriteRequest(boardNumber, cookies.accessToken).then(putFavoriteResponse);
-
+     if (!loginUser) {
+    alert('로그인 후 이용가능합니다.');
+    return;
     }
-
+    if (!boardNumber || !cookies.accessToken) return;
+    putFavoriteRequest(boardNumber, cookies.accessToken).then(putFavoriteResponse);
+    }
     //    event handler: 좋아요 상자 보기 이벤트 처리    //
     const onShowFavoriteClickHandler = () => {
       setShowFavorite(!showFavorite);
@@ -344,14 +346,22 @@ export default function BoardDetail() {
         </div>
       </div>
       }
-      {showComment && 
-      <div className='board-detail-bottom-comment-box'>
-        <div className='board-detail-bottom-comment-container'>
-          <div className='board-detail-bottom-comment-title'>{'댓글 '}<span className='emphasis'>{totalCommentCount}</span></div>
-          <div className='board-detail-bottom-comment-list-container'>
-            {viewList.map(item => <CommentItem commentListItem={item} />)}
-          </div>
-        </div>
+     {showComment && 
+  <div className='board-detail-bottom-comment-box'>
+  <div className='board-detail-bottom-comment-container'>
+    {totalCommentCount > 0 && (
+      <div className='board-detail-bottom-comment-title'>
+        {'댓글 '}<span className='emphasis'>{totalCommentCount}</span>
+      </div>
+    )}
+    <div className='board-detail-bottom-comment-list-container'>
+      {totalCommentCount === 0 ? (
+        <div className='no-comments-message'>{'가장 먼저 댓글을 달아보세요!'}</div>
+      ) : (
+        viewList.map(item => <CommentItem commentListItem={item} />)
+      )}
+    </div>
+  </div>
         <div className='divider'></div>
         <div className='board-detail-bottom-comment-pagination-box'>
           <Pagination 

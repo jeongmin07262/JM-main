@@ -29,8 +29,6 @@ const SignInCard = () => {
 const emailRef = useRef<HTMLInputElement | null> (null);
 //      state : 패스워드 요소 참조 상태               //
 const passwordRef = useRef<HTMLInputElement | null> (null);
-
-
 //      state : 이메일 상태               //
 const [email, setEmail] = useState<string>('');
 //      state : 패스워드 상태               //
@@ -111,6 +109,11 @@ const onPasswordKeyDownHandler = (event: KeyboardEvent<HTMLInputElement>) => {
   onSignInButtonClickHandler(); 
 }
 
+//      event handler : 회원가입 링크 클릭 이벤트 처리      //
+const onGotoMainLinkClickHandler = () => {
+  navigate(MAIN_PATH());
+}
+
 
   
 //      render: sign in card 컴포넌트 렌더링 //
@@ -119,7 +122,7 @@ const onPasswordKeyDownHandler = (event: KeyboardEvent<HTMLInputElement>) => {
       <div className='auth-card-box'>
         <div className='auth-card-top'>
           <div className ='auth-card-title-box'>
-            <div className='auth-card-title'>{'로그인'}</div>
+            <div className='auth-card-title'><span className='goto-main-link' onClick={onGotoMainLinkClickHandler}>{'rêve:꿈'}</span></div>
           </div>
           <InputBox label='이메일 주소' ref={emailRef} type='text' placeholder='이메일 주소를 입력해주세요.' error ={error} value={email} onChange={onEmailChangeHandler} onKeyDown={onEmailKeyDownHandler}/>
           <InputBox label='패스워드' ref={passwordRef} type={passwordType} placeholder='비밀번호를 입력해주세요.' error ={error} value={password} onChange={onPasswordChangeHandler} icon={passwordButtonIcon} onButtonClick={onPasswordButtonClickHandler} onKeyDown={onPasswordKeyDownHandler}/>
@@ -245,6 +248,7 @@ const signUpResponse = (responseBody: SignUpResponseDto | ResponseDto | null) =>
   if (code === 'DBE') alert('데이터베이스 오류입니다.');
 
   if (code !== 'SU') return;
+  alert('rêve에 오신걸 환영합니다.')
   setView('sign-in');
 } 
 
