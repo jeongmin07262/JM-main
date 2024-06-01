@@ -22,6 +22,7 @@ import com.sugang.boardback.dto.response.board.GetBoardResponseDto;
 import com.sugang.boardback.dto.response.board.GetCommentListResponseDto;
 import com.sugang.boardback.dto.response.board.GetFavoriteListResponseDto;
 import com.sugang.boardback.dto.response.board.GetLatestBoardListResponseDto;
+import com.sugang.boardback.dto.response.board.GetLatestCommentListResponseDto;
 import com.sugang.boardback.dto.response.board.GetSearchBoardListResponseDto;
 import com.sugang.boardback.dto.response.board.GetTop3BoardListResponseDto;
 import com.sugang.boardback.dto.response.board.GetUserBoardListResponseDto;
@@ -63,8 +64,16 @@ public class BoardController {
         ResponseEntity<? super GetCommentListResponseDto> response = boardService.getCommentList(boardNumber);
         return response;
     }
+
+    @GetMapping("/{boardNumber}/latest-comment-list")
+    public ResponseEntity<? super GetLatestCommentListResponseDto> getLatestCommentList(
+        @PathVariable("boardNumber") Integer boardNumber
+    ){
+        ResponseEntity<? super GetLatestCommentListResponseDto> response = boardService.getLatestCommentList(boardNumber);
+        return response;
+    }
     
-    @PatchMapping("/{boardNumber}/increase-view-count")
+    @GetMapping("/{boardNumber}/increase-view-count")
     public ResponseEntity<? super IncreaseViewCountResponseDto> increaseViewCount(
         @PathVariable("boardNumber") Integer boardNumber
     ){

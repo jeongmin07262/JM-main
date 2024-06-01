@@ -61,17 +61,8 @@ export default function Main() {
   //    component: 게시물 메인 화면 하단 컴포넌트        //
   const MainBottom = () => {
 
-    //    state: 페이지네이션 관련 상태    //
-    const {
-      currentPage,
-        setCurrentPage,
-        currentSection,
-        setCurrentSection,
-        viewList,
-        viewPageList,
-        totalSection,
-        setTotalList
-    } = usePagination<BoardListItem>(5);
+    //    state: 인기 검색어 리스트 상태    //
+    const [latestList, setlatestList] = useState<BoardListItem[]>([]);
 
     //    state: 인기 검색어 리스트 상태    //
     const [popularWordList, setpopularWordList] = useState<string[]>([]);
@@ -84,10 +75,10 @@ export default function Main() {
       if (code !== 'SU') return;
 
       const {latestList} = responseBody as GetLatestBoardListResponseDto;
-      setTotalList(latestList);
+      setlatestList(latestList);
     }
 
-    //    function: get popular top3 board list response 처리 함수    //
+    //    function: get popular board list response 처리 함수    //
     const getPopularListResponse = (responseBody: GetPopularListResponseDto | ResponseDto | null) => {
       if (!responseBody) return;
       const {code} =responseBody;
@@ -116,7 +107,7 @@ export default function Main() {
         <div className='main-bottom-title'>{'최신 게시물'}</div>
         <div className='main-bottom-contents-box'>
           <div className='main-bottom-current-contents'>
-            {viewList.map(boardListItem => <BoardItem boardListItem={boardListItem}/>)}
+            {latestList.map(boardListItem => <BoardItem boardListItem={boardListItem}/>)}
           </div>
           <div className='main-bottom-popular-box'>
             <div className='main-bottom-popular-card'>
@@ -130,14 +121,6 @@ export default function Main() {
           </div>
         </div>
         <div className='main-bottom-pagination-box'>
-         <Pagination 
-          currentPage = {currentPage}
-          currentSection = {currentSection}
-          setCurrentPage = {setCurrentPage}
-          setCurrentSection = {setCurrentSection}
-          viewPageList = {viewPageList}
-          totalSection = {totalSection}
-          />
         </div>
         </div>
       </div>

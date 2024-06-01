@@ -12,6 +12,7 @@ import com.sugang.boardback.dto.response.board.GetBoardResponseDto;
 import com.sugang.boardback.dto.response.board.GetCommentListResponseDto;
 import com.sugang.boardback.dto.response.board.GetFavoriteListResponseDto;
 import com.sugang.boardback.dto.response.board.GetLatestBoardListResponseDto;
+import com.sugang.boardback.dto.response.board.GetLatestCommentListResponseDto;
 import com.sugang.boardback.dto.response.board.GetSearchBoardListResponseDto;
 import com.sugang.boardback.dto.response.board.GetTop3BoardListResponseDto;
 import com.sugang.boardback.dto.response.board.GetUserBoardListResponseDto;
@@ -108,6 +109,23 @@ public class BoardServiceImplement implements BoardService {
             return ResponseDto.databaseError();
         }
         return GetCommentListResponseDto.success(resultSets);
+    }
+
+    
+    @Override
+    public ResponseEntity<? super GetLatestCommentListResponseDto> getLatestCommentList(Integer boardNumber) {
+        List<GetCommentListResultSet> resultSets = new ArrayList<>();
+        try {
+            boolean existedBoard = boardRepository.existsByBoardNumber(boardNumber);
+            if(!existedBoard) return GetLatestCommentListResponseDto.noExistBoard();
+
+            resultSets = commentRepository.getLatestCommentList(boardNumber);
+            
+        } catch (Exception exception) {
+            exception.printStackTrace();
+            return ResponseDto.databaseError();
+        }
+        return GetLatestCommentListResponseDto.success(resultSets);
     }
 
     @Override

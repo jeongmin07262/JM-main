@@ -2,11 +2,10 @@ import axios from 'axios';
 import { SignInRequestDto, SignUpRequestDto } from './request/auth';
 import { SignInResponseDto, SignUpResponseDto } from './response/auth';
 import { ResponseDto } from './response';
-import { GetSignInUserResponseDto, GetUserResponseDto, PatchNicknameResponseDto, PatchProfileImageResponseDto } from './response/user';
+import { GetSignInUserResponseDto, GetUserResponseDto, PatchNicknameResponseDto, PatchProfileImageResponseDto, DeleteUserResponseDto } from './response/user';
 import { error } from 'console';
 import { PatchBoardRequestDto, PostBoardRequestDto, PostCommentRequestDto } from './request/board';
-import { PostBoardResponseDto, GetBoardResponseDto, IncreaseViewCountResponseDto, GetFavoriteListResponseDto, GetCommentListResponseDto, PutFavoriteResponseDto, PostCommentResponseDto, DeleteBoardResponseDto, PatchBoardResponseDto, GetLatestBoardListResponseDto, GetTop3BoardListResponseDto, GetSearchBoardListResponseDto, GetUserBoardListResponseDto } from './response/board';
-import { GetPopularListResponseDto, GetRelationListResponseDto } from './response/search';
+import { PostBoardResponseDto, GetBoardResponseDto, IncreaseViewCountResponseDto, GetFavoriteListResponseDto, GetCommentListResponseDto, PutFavoriteResponseDto, PostCommentResponseDto, DeleteBoardResponseDto, PatchBoardResponseDto, GetLatestBoardListResponseDto, GetTop3BoardListResponseDto, GetSearchBoardListResponseDto, GetUserBoardListResponseDto } from './response/board';import { GetPopularListResponseDto, GetRelationListResponseDto } from './response/search';
 import { PatchNicknameRequestDto, PatchProfileImageRequestDto } from './request/user';
 
 
@@ -61,6 +60,7 @@ const POST_COMMENT_URL = (boardNumber : number | string) => `${API_DOMAIN}/board
 const PATCH_BOARD_URL = (boardNumber : number | string) => `${API_DOMAIN}/board/${boardNumber}`;
 const PUT_FAVORITE_URL = (boardNumber : number | string) => `${API_DOMAIN}/board/${boardNumber}/favorite`;
 const DELETE_BOARD_URL = (boardNumber : number | string) => `${API_DOMAIN}/board/${boardNumber}`;
+const DELETE_USER_URL = (email: string) => `${API_DOMAIN}/user/delete/${email}`;  
 
 
 export const getBoardRequest = async (boardNumber: number | string) => {
@@ -246,6 +246,20 @@ export const deleteBoardRequest = async (boardNumber: number | string, accessTok
             const responseBody: ResponseDto = error.response.data;
             return responseBody;
         })
+    return result;
+};
+
+export const deleteUserRequest = async (email: string, accessToken: string) => {  
+    const result = await axios.delete(DELETE_USER_URL(email), authorization(accessToken))
+        .then(response => {
+            const responseBody: DeleteUserResponseDto = response.data;
+            return responseBody;
+        })
+        .catch(error => {
+            if (!error.response) return null;
+            const responseBody:ResponseDto = error.response.data;
+            return responseBody;
+        });
     return result;
 };
 

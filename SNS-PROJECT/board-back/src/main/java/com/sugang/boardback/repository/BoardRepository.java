@@ -6,12 +6,13 @@ import org.springframework.stereotype.Repository;
 
 import com.sugang.boardback.entity.BoardEntity;
 import com.sugang.boardback.repository.resultSet.GetBoardResultSet;
-
+import java.util.List;
 @Repository
 public interface BoardRepository extends JpaRepository<BoardEntity, Integer>{
     
     boolean existsByBoardNumber(Integer boardNumber);
     BoardEntity findByBoardNumber(Integer boardNumber);
+    
     @Query(
         value =
         "SELECT " + 
@@ -29,4 +30,6 @@ public interface BoardRepository extends JpaRepository<BoardEntity, Integer>{
         nativeQuery = true
     )
     GetBoardResultSet getBoard(Integer boardNumber);
+
+    List<BoardEntity> findByWriterEmail(String email);
 }

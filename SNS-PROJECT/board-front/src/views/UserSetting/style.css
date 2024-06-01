@@ -1,0 +1,214 @@
+#user-setting-wrapper{
+    padding: 100px 0 100px;
+
+    display: flex;
+    justify-content: center;
+
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+.user-setting-title {
+    color: rgba(0, 0, 0, 1);
+
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 140%;
+
+    gap: 50px;
+}
+
+.user-setting-container {
+    width: 800px;
+    min-width: 800px;
+    display: flex;
+    flex-direction: column;
+
+    gap: 20px;
+}
+
+.user-setting-profile-box {
+    border-radius: 30px;
+    background-color: rgba(0, 0, 0, 0.04);
+    padding: 30px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.user-setting-my-profile-image-box {
+    border-radius: 50%;
+
+    width: 120px;
+    height: 120px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-color: rgba(217, 217, 217, 1);
+    
+    cursor: pointer;
+}
+
+.user-setting-profile-image {
+    border-radius: 50%;
+    height: 100%;
+    width: 100%;
+
+    background-position: 50% 50%;
+    background-size: 100% 100%;
+}
+
+.user-setting-profile-image-box {
+    border-radius: 50%;
+
+    width: 120px;
+    height: 120px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-color: rgba(217, 217, 217, 1);
+    
+    background-position: 50% 50%;
+    background-size: 100% 100%;
+}
+
+.user-setting-info-box {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.user-setting-info-nickname-box {
+    display: flex;
+    align-items: center;
+    
+    gap: 10px;
+}
+
+.user-setting-info-nickname-input {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    
+    width: 750px;
+    border: none;
+    border-radius: 30px;
+    background-color: rgba(0, 0, 0, 0.04);
+    padding: 30px;
+    margin: 10px 0;
+}
+
+.user-setting-info-nickname-input-box {
+    display: flex;
+    align-items: center;
+    
+    gap: 10px;
+}
+
+.user-setting-info-nickname-title {
+    margin: 10px 0;
+    display: flex;
+    gap: 50px;
+    font-size: 24px;
+    font-weight: 500;
+}
+
+.user-setting-info-nickname {
+    display: flex;
+    justify-content: space-between;
+    
+    border: none;
+    border-radius: 30px;
+    background-color: rgba(0, 0, 0, 0.04);
+    padding: 30px;
+    margin: 10px 0;
+
+    
+}
+
+.user-setting-info-email {
+    color: rgba(0, 0, 0, 0.4);
+
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 140%;
+}
+
+.user-setting-nickname-box {
+    display: flex;
+    flex-direction: column;
+    border-radius: 30px;
+}
+
+.user-setting-nickname-title {
+    color: rgba(0, 0, 0, 1);
+
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 140%;
+
+    gap: 50px;
+}
+
+.icon-button {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    align-items: flex-end;
+    gap: 10px;
+}
+
+.user-setting-etc-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.user-setting-etc-line-info {
+    color: rgba(0, 0, 0, 1);
+    margin: 10px 0;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 140%;
+
+    gap: 50px;
+}
+
+.user-setting-etc-line-info-box{
+    display: flex;
+    border: none;
+    border-radius: 30px;
+    background-color: rgba(0, 0, 0, 0.04);
+    padding: 30px
+}
+
+.user-setting-etc-line-info-e {
+    margin: 10px 0;
+    font-size: 15px;
+    color: rgba(0, 0, 0, 0.5);
+}
+
+.user-setting-delete-title{
+    color: rgba(0, 0, 0, 1);
+
+    margin: 10px 0;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 140%;
+
+    gap: 50px;
+}
+
+.user-setting-delete-info{
+    border: none;
+    border-radius: 30px;
+    background-color: rgba(0, 0, 0, 0.04);
+    padding: 30px;
+    margin:10px 0;
+}
+
+.user-setting-delte-button{
+
+}

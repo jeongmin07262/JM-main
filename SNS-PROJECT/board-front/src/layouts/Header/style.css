@@ -4,7 +4,7 @@
     display: flex;
     justify-content: center;
 
-    background-color: #57648C;
+    background-color: rgba(0, 0, 0, 0.3);
 }
 
 .header-container{

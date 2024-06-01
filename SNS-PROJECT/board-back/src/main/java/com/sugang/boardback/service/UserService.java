@@ -4,6 +4,7 @@ import org.springframework.http.ResponseEntity;
 
 import com.sugang.boardback.dto.request.user.PatchNicknameRequestDto;
 import com.sugang.boardback.dto.request.user.PatchProfileImageRequestDto;
+import com.sugang.boardback.dto.response.user.DeleteUserResponseDto;
 import com.sugang.boardback.dto.response.user.GetSignInUserResponseDto;
 import com.sugang.boardback.dto.response.user.GetUserResponseDto;
 import com.sugang.boardback.dto.response.user.PatchNicknameResponseDto;
@@ -15,5 +16,5 @@ public interface UserService {
     ResponseEntity<? super GetSignInUserResponseDto> getSignInUser(String email);
     ResponseEntity<? super PatchNicknameResponseDto> patchNickname(PatchNicknameRequestDto dto, String email);
     ResponseEntity<? super PatchProfileImageResponseDto> patchProfileImage(PatchProfileImageRequestDto dto, String email);
-    
+    ResponseEntity<? super DeleteUserResponseDto> deleteUser(String email);
 }

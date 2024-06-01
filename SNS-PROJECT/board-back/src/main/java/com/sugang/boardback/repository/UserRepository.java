@@ -1,5 +1,7 @@
 package com.sugang.boardback.repository;
 
+import javax.transaction.Transactional;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -13,6 +15,7 @@ public interface UserRepository extends JpaRepository<UserEntity, String> {
     boolean existsByTelNumber(String telNumber);
 
     UserEntity findByEmail(String email);
-    
-    
+
+    @Transactional
+    void deleteByEmail(String email);
 }

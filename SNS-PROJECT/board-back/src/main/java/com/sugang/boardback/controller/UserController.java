@@ -4,6 +4,7 @@ import javax.validation.Valid;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.sugang.boardback.dto.request.user.PatchNicknameRequestDto;
 import com.sugang.boardback.dto.request.user.PatchProfileImageRequestDto;
+import com.sugang.boardback.dto.response.user.DeleteUserResponseDto;
 import com.sugang.boardback.dto.response.user.GetSignInUserResponseDto;
 import com.sugang.boardback.dto.response.user.GetUserResponseDto;
 import com.sugang.boardback.dto.response.user.PatchNicknameResponseDto;
@@ -57,6 +59,13 @@ public class UserController {
     ){
         ResponseEntity<? super PatchProfileImageResponseDto> response = userService.patchProfileImage(requestBody, email);
         return response; 
+    }
 
+    @DeleteMapping("/delete/{email}")
+    public ResponseEntity<? super DeleteUserResponseDto> deleteUser(
+        @PathVariable("email") String email
+    ){
+        ResponseEntity <? super DeleteUserResponseDto> response = userService.deleteUser(email);
+        return response;
     }
 }

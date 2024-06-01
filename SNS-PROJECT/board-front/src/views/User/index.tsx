@@ -160,15 +160,15 @@ export default function User() {
     return(
       <div id='user-top-wrapper'>
         <div className='user-top-container'>
+
           {isMyPage ? 
-           <div className='user-top-my-profile-image-box' onClick={onProfileBoxClickHandler}>
+           <div className='user-top-my-profile-image-box' >
             {profileImage !== null ?
             <div className='user-top-profile-image' style={{backgroundImage:`url(${profileImage})`}}></div> :
               <div className='icon-box-large'>
               <div className='icon image-box-white-icon'></div>
             </div>
           }
-            <input ref={imageInputRef} type='file' accept='image/*' style={{display:'none'}} onChange={onProfileImageChangeHandler}/>
            </div> :
            <div className='user-top-profile-image-box' style={{backgroundImage:`url(${profileImage ? profileImage : defaultProfileImage})`}} ></div>
           }
@@ -178,16 +178,9 @@ export default function User() {
                
                {isMyPage ? 
                 <> 
-                {isNicknameChange ? 
-                <input className='user-top-info-nickname-input' type='text' size={changeNickname.length + 2} value={changeNickname} onChange={onNicknameChangeHandler}/> : 
                 <div className='user-top-info-nickname'>{nickname}</div>
-                }
-                
-                <div className='icon-button' onClick={onNicknameEditButtonClickHandler}>
-                  <div className='icon edit-icon'></div>
-                </div> </> :
+                 </> :
                 <div className='user-top-info-nickname'>{nickname}</div> }
-                  
                 </div>
                 <div className='user-top-info-email'>{'dlwjdals0726@gmail.com'}</div>
             </div>

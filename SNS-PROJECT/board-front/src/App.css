@@ -171,6 +171,28 @@
     background-size: 100% 100%;
 }
 
+.user-delete-button {
+    width: auto;
+    height: 30px;
+
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+
+    color: rgba(255, 0, 0, 1);
+
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 140%;
+    
+    cursor: pointer;
+}
+
+.user-delete-button:hover{
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+
 .eye-light-off-icon{
     background-image: url(assets/image/eye-light-off.png);
 }

@@ -11,6 +11,7 @@ import IncreaseViewCountResponseDto from './increase-view-count.response.dto';
 import GetLatestBoardListResponseDto from './get-latest-board-list.response.dto';
 import GetSearchBoardListResponseDto from './get-search-board-list.response.dto';
 import GetUserBoardListResponseDto from './get-user-board-list.response.dto';
+import GetLatestCommentListResponseDto from './get-latest-comment-list.response.dto';
 
 export type {
     GetBoardResponseDto,
@@ -25,5 +26,6 @@ export type {
     IncreaseViewCountResponseDto,
     GetLatestBoardListResponseDto,
     GetSearchBoardListResponseDto,
-    GetUserBoardListResponseDto
+    GetUserBoardListResponseDto,
+    GetLatestCommentListResponseDto
 }
