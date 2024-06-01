@@ -1,6 +1,6 @@
 package com.sugang.boardback.controller;
 
-import javax.validation.Valid;
+import jakarta.validation.Valid;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -22,7 +22,6 @@ import com.sugang.boardback.dto.response.board.GetBoardResponseDto;
 import com.sugang.boardback.dto.response.board.GetCommentListResponseDto;
 import com.sugang.boardback.dto.response.board.GetFavoriteListResponseDto;
 import com.sugang.boardback.dto.response.board.GetLatestBoardListResponseDto;
-import com.sugang.boardback.dto.response.board.GetLatestCommentListResponseDto;
 import com.sugang.boardback.dto.response.board.GetSearchBoardListResponseDto;
 import com.sugang.boardback.dto.response.board.GetTop3BoardListResponseDto;
 import com.sugang.boardback.dto.response.board.GetUserBoardListResponseDto;
@@ -62,14 +61,6 @@ public class BoardController {
         @PathVariable("boardNumber") Integer boardNumber
     ){
         ResponseEntity<? super GetCommentListResponseDto> response = boardService.getCommentList(boardNumber);
-        return response;
-    }
-
-    @GetMapping("/{boardNumber}/latest-comment-list")
-    public ResponseEntity<? super GetLatestCommentListResponseDto> getLatestCommentList(
-        @PathVariable("boardNumber") Integer boardNumber
-    ){
-        ResponseEntity<? super GetLatestCommentListResponseDto> response = boardService.getLatestCommentList(boardNumber);
         return response;
     }
     

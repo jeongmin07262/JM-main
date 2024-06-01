@@ -125,7 +125,7 @@ public class UserServiceImplement implements UserService {
                 favoriteRepository.deleteByBoardNumber(board.getBoardNumber());
                 boardRepository.delete(board);
             }
-
+            commentRepository.deleteByUserEmail(email);
             userRepository.deleteByEmail(email);
             
         } catch (Exception exception) {

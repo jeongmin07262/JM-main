@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 import com.sugang.boardback.entity.ImageEntity;
 import java.util.List;
 
-import javax.transaction.Transactional;
+import jakarta.transaction.Transactional;
 
 
 @Repository

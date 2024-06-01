@@ -10,7 +10,7 @@ import com.sugang.boardback.repository.resultSet.GetFavoriteListResultSet;
 
 import java.util.List;
 
-import javax.transaction.Transactional;
+import jakarta.transaction.Transactional;
 
 @Repository
 public interface FavoriteRepository extends JpaRepository<FavoriteEntity, FavoritePk>{

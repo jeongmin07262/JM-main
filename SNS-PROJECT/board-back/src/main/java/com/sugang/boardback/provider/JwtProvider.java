@@ -1,5 +1,7 @@
 package com.sugang.boardback.provider;
 
+import java.nio.charset.StandardCharsets;
+import java.security.Key;
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;
 import java.util.Date;
@@ -10,6 +12,7 @@ import org.springframework.stereotype.Component;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import io.jsonwebtoken.security.Keys;
 
 
 //Jwt 생성, 검증하는 역할
@@ -26,11 +29,12 @@ public class JwtProvider {
         //Instant.now(현재 시간)에서 1시간 더한 새로운 Instant 객체 생성
         //ChronoUnit.HOURS는 1이 시간 단위라는 것을 지정해줌
         Date expiredDate = Date.from(Instant.now().plus(1, ChronoUnit.HOURS));
+        Key key = Keys.hmacShaKeyFor(secretKey.getBytes(StandardCharsets.UTF_8));
 
         //jwt 생성
         String jwt = Jwts.builder()
             //서명 알고리즘과 비밀키(서버측에서만 알아야함) 지정
-            .signWith(SignatureAlgorithm.HS256, secretKey)
+            .signWith(key, SignatureAlgorithm.HS256)
             //JWT 주제 설정(이메일 주소로 주제 설정), 토큰의 발급시간 설정, 토큰의 만료시간 설정
             .setSubject(email).setIssuedAt(new Date()).setExpiration(expiredDate)
             //위에서 설정한 모든 내용을 기반으로 JWT 생성되고, 해당 JWT 문자열로 반환
@@ -42,13 +46,17 @@ public class JwtProvider {
         //JWT 파싱해 클레임 가져오는거 시도
         //클레임 : 토큰에 포함된 정보
         Claims claims = null;
+        Key key = Keys.hmacShaKeyFor(secretKey.getBytes(StandardCharsets.UTF_8));
 
         //파싱 도중 에외 발생시 null 반환
         try {
             //jwt 파서가 주어진 secretKey를 이용해 jwt서명 검증
             //null이 되는 경우 비밀키가 안맞거나, 토큰이 만료된 경우
-            claims = Jwts.parser().setSigningKey(secretKey)
-                .parseClaimsJws(jwt).getBody(); //유효하면 getBody로 클레임 추철
+            claims = Jwts.parserBuilder()
+                .setSigningKey(key)
+                .build()
+                .parseClaimsJws(jwt)
+                .getBody(); //유효하면 getBody로 클레임 추철
         } catch (Exception exception) { //유효하지 않은 경우 예외 출력 후 null 반환
             exception.printStackTrace();
             return null;            
